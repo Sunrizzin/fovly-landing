@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Fovly</title>
+    <title>Privacy Policy — Fovly</title>
+    <meta name="description" content="Fovly Privacy Policy — how we handle your data in the iOS speed reading app.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg: #09090b; --surface: #18181b; --border: #3f3f46;
-            --text: #fafafa; --text-muted: #a1a1aa;
-            --accent: #6366f1; --accent-light: #818cf8;
+            --bg: #050510; --surface: #0d0d1a; --border: rgba(255,255,255,0.08);
+            --text: #f0f0f5; --text-muted: #8888a0; --text-dim: #55556a;
+            --accent: #7c5cfc; --accent-light: #a78bfa;
         }
         html { scroll-behavior: smooth; }
         body {
@@ -25,51 +26,53 @@
 
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            background: rgba(9,9,11,0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            background: rgba(5,5,16,0.7);
             border-bottom: 1px solid var(--border);
         }
         .nav-inner {
-            max-width: 1120px; margin: 0 auto;
-            padding: 0 24px; height: 64px;
+            max-width: 1100px; margin: 0 auto;
+            padding: 0 24px; height: 60px;
             display: flex; align-items: center; justify-content: space-between;
         }
-        .logo { font-weight: 800; font-size: 1.35rem; letter-spacing: -0.02em; color: var(--text); }
+        .logo { font-weight: 900; font-size: 1.3rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text); }
         .logo span { color: var(--accent-light); }
-        .nav-links { display: flex; gap: 32px; }
-        .nav-links a { font-size: 0.9rem; color: var(--text-muted); transition: color 0.2s; }
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links a { font-size: 0.85rem; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
         .nav-links a:hover { color: var(--text); text-decoration: none; }
 
         .content {
-            max-width: 720px; margin: 0 auto;
+            max-width: 700px; margin: 0 auto;
             padding: 120px 24px 80px;
         }
         .content h1 {
             font-size: 2.2rem; font-weight: 800;
             letter-spacing: -0.02em; margin-bottom: 8px;
         }
-        .content .date { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 48px; }
+        .content .date { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 48px; }
         .content h2 {
-            font-size: 1.2rem; font-weight: 700; margin-top: 40px; margin-bottom: 12px;
+            font-size: 1.15rem; font-weight: 700; margin-top: 40px; margin-bottom: 12px;
+            color: var(--text);
         }
-        .content p, .content ul {
-            color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px; line-height: 1.7;
+        .content p, .content ul, .content ol {
+            color: var(--text-muted); font-size: 0.93rem; margin-bottom: 16px; line-height: 1.75;
         }
-        .content ul { padding-left: 24px; }
+        .content ul, .content ol { padding-left: 24px; }
         .content li { margin-bottom: 8px; }
+        .content strong { color: var(--text); font-weight: 600; }
 
         footer {
-            border-top: 1px solid var(--border); padding: 40px 24px;
+            border-top: 1px solid var(--border); padding: 48px 24px;
         }
         .footer-inner {
-            max-width: 1120px; margin: 0 auto;
+            max-width: 1100px; margin: 0 auto;
             display: flex; align-items: center; justify-content: space-between;
             flex-wrap: wrap; gap: 16px;
         }
-        .footer-left { font-size: 0.85rem; color: var(--text-muted); }
+        .footer-left { font-size: 0.82rem; color: var(--text-dim); }
         .footer-links { display: flex; gap: 24px; }
-        .footer-links a { font-size: 0.85rem; color: var(--text-muted); }
+        .footer-links a { font-size: 0.82rem; color: var(--text-muted); }
         .footer-links a:hover { color: var(--text); }
     </style>
 </head>
@@ -77,62 +80,80 @@
 
 <nav>
     <div class="nav-inner">
-        <a href="/" class="logo">fov<span>ly</span></a>
+        <a href="/" class="logo">FOV<span>LY</span></a>
         <div class="nav-links">
             <a href="/">Home</a>
             <a href="/terms.html">Terms</a>
+            <a href="/support.html">Support</a>
         </div>
     </div>
 </nav>
 
 <main class="content">
     <h1>Privacy Policy</h1>
-    <p class="date">Last updated: February 1, 2025</p>
+    <p class="date">Last updated: March 7, 2026</p>
 
     <h2>Introduction</h2>
-    <p>Fovly ("we", "our", "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard information when you use our speed reading application at fovly.org.</p>
+    <p>Fovly ("we", "our", "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard information when you use the Fovly speed reading application for iOS ("the App").</p>
 
     <h2>Information We Collect</h2>
-    <p>Fovly is designed with privacy in mind. We collect minimal data:</p>
+    <p>Fovly is designed with privacy as a core principle. We collect minimal data:</p>
     <ul>
-        <li><strong>Text you paste:</strong> Any text you paste into the app is processed entirely in your browser. We do not send, store, or access your text on any server.</li>
-        <li><strong>Usage analytics:</strong> We may collect anonymous usage data such as page views and session duration to improve the app. This data cannot identify you personally.</li>
-        <li><strong>Device information:</strong> Basic device and browser information may be collected for compatibility and performance purposes.</li>
+        <li><strong>Books and reading data:</strong> All books you import, reading progress, bookmarks, and settings are stored locally on your device using Apple's SwiftData framework. This data never leaves your device unless you enable iCloud sync, in which case it is stored in your private iCloud account.</li>
+        <li><strong>Subscription information:</strong> If you subscribe to Fovly Premium, the transaction is processed entirely by Apple through StoreKit. We do not collect, store, or have access to your payment information.</li>
+        <li><strong>AI features:</strong> When you use AI-powered features (summaries, explanations, quizzes), relevant text excerpts are sent to Google's Gemini API for processing. We do not store this data on our servers. Google's privacy policy governs their handling of this data.</li>
+        <li><strong>Analytics:</strong> We collect anonymous, aggregated usage analytics (such as feature usage and session duration) to improve the App. This data cannot identify you personally.</li>
     </ul>
 
     <h2>How We Use Information</h2>
     <p>Any information collected is used solely to:</p>
     <ul>
-        <li>Provide and maintain the Fovly service</li>
-        <li>Improve app performance and user experience</li>
-        <li>Understand general usage patterns</li>
+        <li>Provide and maintain the Fovly app experience</li>
+        <li>Process AI feature requests (summaries, explanations, quizzes)</li>
+        <li>Improve app performance, stability, and user experience</li>
+        <li>Understand general, anonymous usage patterns</li>
     </ul>
 
-    <h2>Data Storage</h2>
-    <p>Fovly processes all reading content locally in your browser. We do not store your text on our servers. Reading preferences (such as speed settings) may be saved in your browser's local storage for convenience.</p>
+    <h2>Data Storage &amp; Security</h2>
+    <p>Fovly stores all reading data locally on your device. When iCloud sync is enabled, data is stored in your private iCloud container, protected by Apple's encryption. We do not operate any servers that store your personal reading data.</p>
 
     <h2>Third-Party Services</h2>
-    <p>We may use third-party analytics services (such as Google Analytics) that collect anonymous usage data. These services have their own privacy policies governing their use of information.</p>
+    <p>Fovly integrates with the following third-party services:</p>
+    <ul>
+        <li><strong>Apple StoreKit:</strong> For processing in-app subscriptions. Subject to <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</li>
+        <li><strong>Google Gemini API:</strong> For AI-powered features (summaries, explanations, quizzes). Subject to <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</li>
+        <li><strong>Gutendex API:</strong> For browsing and downloading free public domain books from Project Gutenberg. No personal data is sent.</li>
+    </ul>
 
-    <h2>Cookies</h2>
-    <p>Fovly may use cookies or similar technologies for basic functionality and analytics. You can control cookie settings through your browser preferences.</p>
+    <h2>iCloud Sync</h2>
+    <p>If you enable iCloud sync, your books, reading progress, and settings are stored in your private iCloud container. This data is encrypted by Apple and is only accessible to you. You can disable iCloud sync at any time in your device settings.</p>
 
     <h2>Children's Privacy</h2>
-    <p>Fovly is not directed at children under 13. We do not knowingly collect personal information from children under 13.</p>
+    <p>Fovly is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us.</p>
+
+    <h2>Data Deletion</h2>
+    <p>You can delete all your data at any time by:</p>
+    <ul>
+        <li>Deleting individual books from your Fovly library</li>
+        <li>Using the "Reset All Settings" option in Fovly's settings</li>
+        <li>Deleting the Fovly app from your device (removes all local data)</li>
+        <li>Removing Fovly data from iCloud via Settings &gt; Apple ID &gt; iCloud &gt; Manage Storage</li>
+    </ul>
 
     <h2>Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last updated" date.</p>
+    <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated date. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
 
     <h2>Contact Us</h2>
-    <p>If you have questions about this Privacy Policy, you can contact us at fovly.org.</p>
+    <p>If you have questions about this Privacy Policy, contact us at <a href="mailto:support@fovly.org">support@fovly.org</a>.</p>
 </main>
 
 <footer>
     <div class="footer-inner">
-        <div class="footer-left">&copy; 2025 Fovly. All rights reserved.</div>
+        <div class="footer-left">&copy; 2026 Fovly. All rights reserved.</div>
         <div class="footer-links">
-            <a href="/privacy.html">Privacy Policy</a>
-            <a href="/terms.html">Terms of Service</a>
+            <a href="/privacy.html">Privacy</a>
+            <a href="/terms.html">Terms</a>
+            <a href="/support.html">Support</a>
         </div>
     </div>
 </footer>
