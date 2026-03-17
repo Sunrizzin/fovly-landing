@@ -154,10 +154,7 @@
         }
         .hero-badge::before {
             content: ''; width: 6px; height: 6px; border-radius: 50%;
-            background: var(--accent-light); animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+            background: var(--accent-light);
         }
         h1 {
             font-size: clamp(2.2rem, 8vw, 4.5rem); font-weight: 900;
@@ -346,24 +343,38 @@
         .footer-links a { font-size: 0.82rem; color: var(--text-muted); transition: color 0.2s; }
         .footer-links a:hover { color: var(--text); }
 
-        /* === SOCIAL PROOF === */
-        .social-proof { padding: 0 24px 120px; }
-        .social-inner {
-            max-width: 580px; margin: 0 auto; text-align: center;
+        /* === PRICING === */
+        .pricing-section { padding: 0 24px 120px; }
+        .pricing-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+        .pricing-cards {
+            display: flex; gap: 16px; justify-content: center; margin-bottom: 36px; flex-wrap: wrap;
         }
-        .stars { display: flex; gap: 4px; justify-content: center; margin-bottom: 10px; }
-        .stars svg { width: 22px; height: 22px; fill: var(--orange); }
-        .social-rating { font-size: 1.6rem; font-weight: 800; margin-bottom: 4px; }
-        .social-label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 32px; }
-        .testimonials {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-        }
-        .testimonial {
+        .pricing-card {
             background: var(--surface); border: 1px solid var(--border);
-            border-radius: 14px; padding: 20px; text-align: left;
+            border-radius: var(--radius); padding: 32px 36px; flex: 1; min-width: 220px; max-width: 280px;
+            position: relative;
         }
-        .testimonial-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px; font-style: italic; }
-        .testimonial-author { font-size: 0.78rem; font-weight: 600; color: var(--text-dim); }
+        .pricing-card-popular {
+            border-color: var(--accent-glow-strong);
+            background: rgba(124,92,252,0.06);
+        }
+        .pricing-badge-pill {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--accent); color: #fff; font-size: 0.7rem; font-weight: 700;
+            padding: 4px 14px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .pricing-period { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; }
+        .pricing-price {
+            font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px;
+        }
+        .pricing-price span { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); }
+        .pricing-detail { font-size: 0.8rem; color: var(--text-dim); }
+        .pricing-features {
+            display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: center;
+        }
+        .pricing-feature {
+            font-size: 0.85rem; color: var(--text-muted); white-space: nowrap;
+        }
 
         /* === HAMBURGER MENU === */
         .hamburger {
@@ -466,6 +477,7 @@
             <a href="#features">Features</a>
             <a href="#how-it-works">How it works</a>
             <a href="#demo">Try it</a>
+            <a href="#pricing">Pricing</a>
             <a href="https://apps.apple.com/app/fovly/id6758403751" class="nav-cta">Get the App</a>
         </div>
         <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -479,6 +491,7 @@
     <a href="#features">Features</a>
     <a href="#how-it-works">How it works</a>
     <a href="#demo">Try the Demo</a>
+    <a href="#pricing">Pricing</a>
     <a href="https://apps.apple.com/app/fovly/id6758403751">Download App</a>
 </div>
 
@@ -521,8 +534,8 @@
             <div class="stat-label">Max WPM</div>
         </div>
         <div class="stat">
-            <div class="stat-value">5</div>
-            <div class="stat-label">AI Features</div>
+            <div class="stat-value">70,000+</div>
+            <div class="stat-label">Free Books</div>
         </div>
         <div class="stat">
             <div class="stat-value">EPUB &amp; FB2</div>
@@ -536,7 +549,7 @@
     <div class="demo-card">
         <div class="demo-top">
             <div class="demo-dots"><span></span><span></span><span></span></div>
-            <span class="demo-top-label" id="wpm-label">300 WPM</span>
+            <span class="demo-top-label" id="wpm-label">Pride &amp; Prejudice &middot; 300 WPM</span>
         </div>
         <div class="demo-display">
             <span class="demo-word" id="demo-word">press play</span>
@@ -571,8 +584,8 @@
         </div>
         <div class="feature-card fade-in">
             <div class="feature-icon fi-stats">&#129504;</div>
-            <h3>Comprehension Quizzes</h3>
-            <p>Finish a book and take an AI-generated quiz. Five questions that test understanding, not memorization.</p>
+            <h3>Quizzes &amp; Summaries</h3>
+            <p>Finish a book and take an AI-generated quiz, then get a full AI summary to lock in what you've learned.</p>
         </div>
         <div class="feature-card fade-in">
             <div class="feature-icon fi-speed">&#9889;</div>
@@ -582,7 +595,7 @@
         <div class="feature-card fade-in">
             <div class="feature-icon fi-sync">&#128214;</div>
             <h3>Import Any Book</h3>
-            <p>Add EPUB, FB2, MOBI, or TXT files from your device. Or browse thousands of free classics from the built-in catalog.</p>
+            <p>Add EPUB or FB2 files from your device. Or browse thousands of free classics from the built-in catalog.</p>
         </div>
         <div class="feature-card fade-in">
             <div class="feature-icon fi-themes">&#127912;</div>
@@ -604,7 +617,7 @@
             <div class="step-num">1</div>
             <div class="step-content">
                 <h3>Add a book</h3>
-                <p>Import an EPUB, FB2, or TXT file from your device, or pick a free classic from the built-in catalog. Fovly also accepts books shared from other apps.</p>
+                <p>Import an EPUB or FB2 file from your device, or pick a free classic from the built-in catalog. Fovly also accepts books shared from other apps.</p>
             </div>
         </div>
         <div class="step fade-in">
@@ -631,26 +644,34 @@
     </div>
 </section>
 
-<!-- Social Proof -->
-<section class="social-proof fade-in">
-    <div class="social-inner">
-        <div class="stars">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<!-- Pricing -->
+<section class="pricing-section fade-in" id="pricing">
+    <div class="pricing-inner">
+        <div class="section-header">
+            <div class="section-tag">Pricing</div>
+            <h2>Start reading for free</h2>
+            <p>Try Fovly with a free trial. Cancel anytime.</p>
         </div>
-        <div class="social-label">Loved by speed readers on the App Store</div>
-        <div class="testimonials">
-            <div class="testimonial">
-                <div class="testimonial-text">"I went from 250 to 600 WPM in two weeks. The AI recaps help me pick up right where I left off."</div>
-                <div class="testimonial-author">Alex R.</div>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <div class="pricing-period">Monthly</div>
+                <div class="pricing-price">$3.99<span>/month</span></div>
+                <div class="pricing-detail">Billed monthly after free trial</div>
             </div>
-            <div class="testimonial">
-                <div class="testimonial-text">"The AI word lookup is incredible. I'm reading Crime and Punishment and it explains every character in context."</div>
-                <div class="testimonial-author">Maria K.</div>
+            <div class="pricing-card pricing-card-popular">
+                <div class="pricing-badge-pill">Best Value</div>
+                <div class="pricing-period">Yearly</div>
+                <div class="pricing-price">$19.99<span>/year</span></div>
+                <div class="pricing-detail">Just $1.67/month — save 65%</div>
             </div>
+        </div>
+        <div class="pricing-features">
+            <div class="pricing-feature">&#10003; Unlimited books</div>
+            <div class="pricing-feature">&#10003; Up to 1,200 WPM</div>
+            <div class="pricing-feature">&#10003; AI recaps, quizzes &amp; lookup</div>
+            <div class="pricing-feature">&#10003; All themes &amp; fonts</div>
+            <div class="pricing-feature">&#10003; Reading streaks &amp; stats</div>
+            <div class="pricing-feature">&#10003; Free classic book catalog</div>
         </div>
     </div>
 </section>
@@ -680,7 +701,7 @@
 
 <script>
     // === RSVP Demo ===
-    const demoText = "Speed reading is a skill that anyone can develop with practice. Fovly shows you one word at a time at your chosen speed, helping your brain process text faster and with better focus. Most people read around 200 to 250 words per minute, but with RSVP training you can comfortably reach 400, 600, or even 1000 words per minute while maintaining good comprehension. The technique works because your eyes stay in one place while the text comes to you, eliminating saccades and reducing fatigue. Try adjusting the speed and see for yourself.";
+    const demoText = "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife. However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered as the rightful property of some one or other of their daughters. My dear Mr. Bennet, said his lady to him one day, have you heard that Netherfield Park is let at last? Mr. Bennet replied that he had not. But it is, returned she; for Mrs. Long has just been here, and she told me all about it.";
 
     const words = demoText.split(/\s+/);
     let wordIndex = 0, wpm = 300, playing = false, timer = null;
@@ -728,7 +749,7 @@
     function updateSpeed(val) {
         wpm = Math.max(100, Math.min(1200, val));
         speedVal.textContent = wpm;
-        wpmLabel.textContent = wpm + ' WPM';
+        wpmLabel.textContent = 'Pride & Prejudice \u00B7 ' + wpm + ' WPM';
     }
 
     document.getElementById('speed-up').addEventListener('click', () => updateSpeed(wpm + 50));
