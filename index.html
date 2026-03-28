@@ -145,7 +145,8 @@
         .hero {
             min-height: 100vh; display: flex; align-items: center;
             justify-content: center; text-align: center;
-            padding: 120px 32px 48px; position: relative; overflow: hidden;
+            padding: 120px 32px 48px; position: relative;
+            overflow: hidden; overflow: clip;
         }
         .hero-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
         .hero-orb {
@@ -425,7 +426,7 @@
         /* ── CTA ── */
         .cta-section {
             padding: 80px 32px 120px; text-align: center;
-            position: relative;
+            position: relative; overflow: hidden;
         }
         .cta-section::before {
             content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
