@@ -9,19 +9,26 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="apple-itunes-app" content="app-id=6758403751">
     <meta name="theme-color" content="#050510">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg: #050510; --surface: rgba(255,255,255,0.04); --surface-solid: #0d0d1a;
-            --border: rgba(255,255,255,0.08); --border-light: rgba(255,255,255,0.12);
+            --bg: #050510; --surface: rgba(255,255,255,0.03); --surface-solid: #0a0a1a;
+            --border: rgba(255,255,255,0.06); --border-light: rgba(255,255,255,0.10);
             --text: #f0f0f5; --text-muted: #8888a0; --text-dim: #55556a;
             --accent: #7c5cfc; --accent-light: #a78bfa;
-            --accent-glow: rgba(124,92,252,0.12);
+            --accent-glow: rgba(124,92,252,0.10);
+            --accent-glow-strong: rgba(124,92,252,0.22);
+            --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --font-display: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: var(--font-body);
             background: var(--bg); color: var(--text);
             line-height: 1.6; -webkit-font-smoothing: antialiased;
         }
@@ -33,35 +40,42 @@
             position: fixed; inset: 0; z-index: 9999;
             pointer-events: none;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            opacity: 0.03;
+            opacity: 0.02;
         }
 
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            backdrop-filter: blur(24px) saturate(180%);
-            -webkit-backdrop-filter: blur(24px) saturate(180%);
-            background: rgba(5,5,16,0.6);
+            backdrop-filter: blur(32px) saturate(180%);
+            -webkit-backdrop-filter: blur(32px) saturate(180%);
+            background: rgba(5,5,16,0.5);
             border-bottom: 1px solid var(--border);
         }
         .nav-inner {
-            max-width: 1200px; margin: 0 auto;
-            padding: 0 32px; height: 64px;
+            max-width: 1280px; margin: 0 auto;
+            padding: 0 40px; height: 72px;
             display: flex; align-items: center; justify-content: space-between;
         }
         .logo {
-            font-weight: 700; font-size: 1.2rem;
-            letter-spacing: 0.14em; text-transform: uppercase;
+            font-family: var(--font-display);
+            font-weight: 700; font-size: 1.15rem;
+            letter-spacing: 0.18em; text-transform: uppercase;
             background: linear-gradient(135deg, var(--text) 0%, var(--accent-light) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .logo:hover { text-decoration: none; }
-        .nav-links { display: flex; gap: 32px; }
+        .nav-links { display: flex; gap: 36px; }
         .nav-links a {
-            font-size: 0.82rem; font-weight: 500;
-            color: var(--text-dim); transition: color 0.3s;
-            letter-spacing: 0.02em;
+            font-size: 0.84rem; font-weight: 500;
+            color: var(--text-dim); transition: color 0.4s var(--ease);
+            letter-spacing: 0.01em; position: relative;
         }
+        .nav-links a:not(.active)::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 1px; background: var(--accent-light);
+            transition: width 0.4s var(--ease-out);
+        }
+        .nav-links a:not(.active):hover::after { width: 100%; }
         .nav-links a:hover { color: var(--text); text-decoration: none; }
         .nav-links a.active { color: var(--text); }
 
@@ -73,26 +87,26 @@
         .hamburger span {
             display: block; width: 100%; height: 1.5px;
             background: var(--text-muted); border-radius: 2px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s var(--ease-out);
         }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
         .mobile-menu {
-            display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
-            background: rgba(5,5,16,0.95); backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid var(--border); padding: 20px 32px;
+            display: none; position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
+            background: rgba(5,5,16,0.95); backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border-bottom: 1px solid var(--border); padding: 24px 40px;
             flex-direction: column; gap: 4px;
         }
-        .mobile-menu.open { display: flex; animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .mobile-menu.open { display: flex; animation: slideDown 0.4s var(--ease-out); }
         @keyframes slideDown {
             from { transform: translateY(-100%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
         .mobile-menu a {
-            display: block; padding: 16px 0; font-size: 0.95rem;
+            display: block; padding: 18px 0; font-size: 0.95rem;
             font-weight: 500; color: var(--text-muted); transition: color 0.3s;
             border-bottom: 1px solid var(--border);
         }
@@ -100,46 +114,73 @@
         .mobile-menu a:hover { color: var(--text); text-decoration: none; }
 
         .hero-mini {
-            text-align: center; padding: 140px 32px 60px;
+            text-align: center; padding: 160px 40px 72px;
+            animation: fadeInUp 1s var(--ease) both;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(28px); filter: blur(6px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
         .hero-mini h1 {
-            font-size: 2.4rem; font-weight: 700;
-            letter-spacing: -0.025em; margin-bottom: 12px;
+            font-family: var(--font-display);
+            font-size: 2.8rem; font-weight: 700;
+            letter-spacing: -0.03em; margin-bottom: 14px;
+            line-height: 1.1;
         }
-        .hero-mini p { color: var(--text-muted); max-width: 480px; margin: 0 auto; font-size: 1rem; line-height: 1.7; }
+        .hero-mini p { color: var(--text-muted); max-width: 480px; margin: 0 auto; font-size: 1.05rem; line-height: 1.75; }
 
-        .content { max-width: 700px; margin: 0 auto; padding: 0 32px 80px; }
+        .content {
+            max-width: 700px; margin: 0 auto; padding: 0 40px 100px;
+            animation: fadeInUp 1s var(--ease) 0.15s both;
+        }
 
+        /* Contact card with animated gradient border */
         .contact-card {
-            background: var(--surface-solid); border: 1px solid var(--border-light);
-            border-radius: 20px; padding: 44px; margin-bottom: 52px;
-            text-align: center;
-            position: relative; overflow: hidden;
+            position: relative; border-radius: 24px; padding: 1px;
+            margin-bottom: 60px; overflow: hidden;
         }
         .contact-card::before {
+            content: ''; position: absolute; inset: -1px; border-radius: 24px;
+            background: conic-gradient(from 0deg, rgba(124,92,252,0.4), rgba(236,72,153,0.2), rgba(6,182,212,0.2), rgba(124,92,252,0.4));
+            animation: rotateBorder 8s linear infinite;
+        }
+        @keyframes rotateBorder {
+            from { filter: hue-rotate(0deg); }
+            to { filter: hue-rotate(360deg); }
+        }
+        .contact-card-inner {
+            background: var(--surface-solid);
+            border-radius: 24px; padding: 52px 48px;
+            text-align: center; position: relative;
+        }
+        .contact-card-inner::before {
             content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
-            width: 300px; height: 300px; border-radius: 50%;
+            width: 400px; height: 400px; border-radius: 50%;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
             pointer-events: none;
         }
-        .contact-card h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 12px; position: relative; }
-        .contact-card p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 24px; position: relative; }
+        .contact-card-inner h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem; font-weight: 700; margin-bottom: 14px; position: relative;
+        }
+        .contact-card-inner p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 28px; position: relative; line-height: 1.7; }
         .contact-btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 14px 28px; border-radius: 999px;
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 15px 32px; border-radius: 999px;
             background: var(--accent); color: #fff; font-weight: 600;
-            font-size: 0.9rem; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 0.9rem; transition: all 0.4s var(--ease-out);
             border: none; cursor: pointer; position: relative;
-            box-shadow: 0 0 20px rgba(124,92,252,0.3);
+            box-shadow: 0 0 24px rgba(124,92,252,0.3);
         }
         .contact-btn:hover {
-            background: var(--accent-light); transform: translateY(-2px);
+            background: var(--accent-light); transform: translateY(-2px) scale(1.02);
             text-decoration: none;
-            box-shadow: 0 0 30px rgba(124,92,252,0.5);
+            box-shadow: 0 0 40px rgba(124,92,252,0.5);
         }
 
         .faq-header {
-            font-size: 1.3rem; font-weight: 600; margin-bottom: 24px;
+            font-family: var(--font-display);
+            font-size: 1.4rem; font-weight: 700; margin-bottom: 28px;
             letter-spacing: -0.02em;
         }
         .faq-item {
@@ -148,58 +189,70 @@
         .faq-item:last-child { border-bottom: none; }
         .faq-q {
             font-size: 0.95rem; font-weight: 600;
-            color: var(--text); cursor: pointer; padding: 22px 0;
+            color: var(--text); cursor: pointer; padding: 24px 0;
             display: flex; align-items: center; justify-content: space-between;
             gap: 16px; user-select: none;
-            transition: color 0.3s;
+            transition: color 0.4s var(--ease);
         }
         .faq-q:hover { color: var(--accent-light); }
         .faq-q::after {
             content: '+'; font-size: 1.3rem; font-weight: 300;
             color: var(--text-dim); flex-shrink: 0;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s var(--ease-out);
         }
         .faq-item.open .faq-q::after { content: '\2212'; color: var(--accent-light); }
         .faq-a {
-            font-size: 0.9rem; color: var(--text-muted); line-height: 1.75;
+            font-size: 0.92rem; color: var(--text-muted); line-height: 1.8;
             max-height: 0; overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: max-height 0.5s var(--ease-out), padding 0.5s var(--ease-out);
             padding-bottom: 0;
         }
         .faq-item.open .faq-a {
-            max-height: 200px; padding-bottom: 22px;
+            max-height: 220px; padding-bottom: 24px;
         }
 
         .info-box {
             background: var(--surface); border: 1px solid var(--border);
-            border-radius: 16px; padding: 28px; margin: 36px 0;
+            border-radius: 20px; padding: 32px; margin: 40px 0;
+            transition: border-color 0.4s var(--ease);
         }
-        .info-box h3 { font-size: 1rem; font-weight: 600; margin-bottom: 12px; }
-        .info-box p, .info-box ol { font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 8px; }
+        .info-box:hover { border-color: var(--border-light); }
+        .info-box h3 {
+            font-family: var(--font-display);
+            font-size: 1.05rem; font-weight: 700; margin-bottom: 14px;
+        }
+        .info-box p, .info-box ol { font-size: 0.92rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 10px; }
         .info-box ol { padding-left: 20px; }
-        .info-box li { margin-bottom: 6px; }
+        .info-box li { margin-bottom: 8px; }
         .info-box strong { color: var(--text); font-weight: 600; }
 
         footer {
-            border-top: 1px solid var(--border); padding: 52px 32px;
+            border-top: 1px solid var(--border); padding: 64px 40px;
+        }
+        footer::before {
+            content: ''; display: block; width: 200px; height: 1px; margin: 0 auto;
+            background: linear-gradient(90deg, transparent, rgba(124,92,252,0.15), transparent);
+            position: relative; top: -64px;
         }
         .footer-inner {
-            max-width: 1200px; margin: 0 auto;
+            max-width: 1280px; margin: 0 auto;
             display: flex; align-items: center; justify-content: space-between;
             flex-wrap: wrap; gap: 16px;
         }
         .footer-left { font-size: 0.8rem; color: var(--text-dim); }
-        .footer-links { display: flex; gap: 28px; }
-        .footer-links a { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+        .footer-links { display: flex; gap: 32px; }
+        .footer-links a { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; transition: color 0.4s var(--ease); }
         .footer-links a:hover { color: var(--text); }
 
         @media (max-width: 640px) {
+            .nav-inner { padding: 0 24px; }
             .nav-links { display: none; }
             .hamburger { display: flex; }
-            .hero-mini { padding: 120px 20px 40px; }
-            .hero-mini h1 { font-size: 1.8rem; }
-            .content { padding: 0 20px 60px; }
-            .contact-card { padding: 32px 20px; }
+            .hero-mini { padding: 140px 24px 48px; }
+            .hero-mini h1 { font-size: 2rem; }
+            .content { padding: 0 24px 72px; }
+            .contact-card-inner { padding: 40px 24px; }
+            .mobile-menu { padding: 20px 24px; }
         }
     </style>
 </head>
@@ -234,12 +287,14 @@
 <main class="content">
 
     <div class="contact-card">
-        <h2>Get in Touch</h2>
-        <p>Have a question, bug report, or feature request? We would love to hear from you.</p>
-        <a href="mailto:support@fovly.org" class="contact-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            support@fovly.org
-        </a>
+        <div class="contact-card-inner">
+            <h2>Get in Touch</h2>
+            <p>Have a question, bug report, or feature request? We would love to hear from you.</p>
+            <a href="mailto:support@fovly.org" class="contact-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                support@fovly.org
+            </a>
+        </div>
     </div>
 
     <h2 class="faq-header">Frequently Asked Questions</h2>
